@@ -1,0 +1,133 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String   @id @default(uuid())
+  email      String   @unique
+  name       String?
+  password   String?
+  secret     String?
+  tempSecret String?
+  phone      String?
+  role       Role     @default(USER)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt DateTime
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model BasicSalary {
+  id          Int     @id @default(autoincrement())
+  designation String?
+  level       String?
+  date        String?
+  amount      Int?
+}
+
+model Customer {
+  id            Int    @id @default(autoincrement())
+  name          String
+  email         String
+  address       String
+  nic           String
+  contactNumber String
+}
+
+model Employee {
+  id          Int    @id @default(autoincrement())
+  name        String
+  designation String
+  level       String
+  attendence  String
+}
+
+model IncomeExpenditure {
+  id              Int      @id @default(autoincrement())
+  title           String?
+  type            String?
+  description     String?
+  transactionDate DateTime @default(now())
+  amount          Int
+}
+
+model Post {
+  id           Int    @id @default(autoincrement())
+  feedbackType String
+  serviceTypi  String
+  dayVisited   String
+  name         String
+  email        String
+  fMessage     String
+  rate         String
+}
+
+model Reservation {
+  id          Int    @id @default(autoincrement())
+  name        String
+  phoneNumber String
+  checkIn     String
+  checkOut    String
+  noOfRooms   String
+}
+
+model Request {
+  id      Int    @id @default(autoincrement())
+  name    String
+  nic     String
+  request String
+}
+
+model Restaurant {
+  id       Int    @id @default(autoincrement())
+  menue    String
+  name     String
+  address  String
+  mobile   String
+  date     String
+  aguest   String
+  cguest   String
+  notes    String
+  cardName String
+  cno      String
+  expdate  String
+  cvv      String
+}
+
+model Service {
+  id          Int    @id @default(autoincrement())
+  type        String
+  name        String
+  price       Int
+  description String
+}
+
+model Supplier {
+  id                    Int    @id @default(autoincrement())
+  supplierName          String
+  supplierAddress       String
+  supplierEmail         String
+  supplierContactNumber String
+  companyWebsiteName    String
+  tradingSince          String
+  typeOfBusiness        String
+  paymentMethod         String
+}

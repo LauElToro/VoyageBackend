@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Start dev server",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "yarn",
+      "args": ["dev"],
+      "console": "internalConsole"
+    }
+  ]
+}
